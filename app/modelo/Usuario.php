@@ -93,6 +93,33 @@ class Usuario
             $conn->close();
             return true;
         }
+    }
+
+    public static function obtener_por_id($id)
+    {
+        $conn = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
+        if ($conn->connect_errno) {
+            print "Error en conectar a la base de datos " . $conn->connect_errno;
+            die();
+        }
+        if (!$stmt = $conn->prepare('Select * from usuarios where id_usuario=?')) {
+            print "Error al preparar la consulta {$conn->error}";
+        }
+        if (!$stmt->bind_param('i', $id)) {
+            print "Error en el bind_para {$stmt->error}";
+        }
+        if (!$stmt->execute()) {
+            print "Error al ejecutar la consulta {$stmt->error}";
+        }
+        $result = $stmt->get_result();
+
+        if (!$fila = $result->fetch_assoc()) {
+            $conn->close();
+            return false;
+        } else {
+            $conn->close();
+            return $fila['nick'];
+        }
 
     }
 }

@@ -15,4 +15,15 @@ class ControladorMensajes
             }
         }
     }
+
+    public function recibir()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!isset($_SESSION['Ultimo_ID'])) {
+                $_SESSION['Ultimo_ID'] = 1;
+            }
+            $mensajes = Mensajes::obtener_mensajes();
+            print json_encode($mensajes);
+        }
+    }
 }

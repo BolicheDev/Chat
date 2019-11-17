@@ -22,8 +22,7 @@ $map = array(
     /* -------- */
     'listar_contactos' => array('Controlador' => 'ControladorContactos', 'metodo' => 'listar', 'publica' => false),
     'enviar' => array('Controlador' => 'ControladorMensajes', 'metodo' => 'enviar', 'publica' => false),
-    'borrar_contacto' => array('Controlador' => 'ControladorContactos', 'metodo' => 'borrar_contacto', 'publica' => false),
-    'editar_contacto' => array('Controlador' => 'ControladorContactos', 'metodo' => 'editar_contacto', 'publica' => false),
+    'recibir' => array('Controlador' => 'ControladorMensajes', 'metodo' => 'recibir', 'publica' => false),
 );
 
 //Si no se introduce ningún comando por GET ponemos uno por defecto

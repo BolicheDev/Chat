@@ -5,7 +5,7 @@ class Mensajes
     private $id_usuario;
     private $texto;
 
-    public function __construct($id_usuario, $texto)
+    public function __construct($id_usuario = null, $texto = null)
     {
         $this->id_usuario = $id_usuario;
         $this->texto = $texto;
@@ -92,6 +92,42 @@ class Mensajes
             $conn->close();
             return false;
         }
+    }
+
+    public static function obtener_mensajes()
+    {
+        $conn = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
+
+        if ($conn->connect_errno) {
+            print("Error: $conn->connect_error");
+            die();
+        }
+        if (!$stmt = $conn->prepare("Select * from mensajes where id_mensaje > ?")) {
+            print "Error al preparar la consulta {$conn->error}";
+        }
+
+        if (!$stmt->bind_param('i', $_SESSION['Ultimo_ID'])) {
+            print "Error en el bind_para {$stmt->error}";
+        }
+
+        if (!$stmt->execute()) {
+            print "Error al ejecutar la consulta {$stmt->error}";
+        }
+
+        $result = $stmt->get_result();
+        $conn->close();
+        $arr_mensajes = array();
+
+        while ($mensaje = $result->fetch_assoc()) {
+            if ($mensaje['id_mensaje'] > $_SESSION['Ultimo_ID']) {
+                $_SESSION['Ultimo_ID'] = $mensaje['id_mensaje'];
+            }
+            if ($mensaje['id_usuario'] != Sesion::get_usuario()->getId_usuario()) {
+                $mensaje["id_usuario"] = Usuario::obtener_por_id($mensaje["id_usuario"]);
+                $arr_mensajes[] = $mensaje;
+            }
+        }
+        return $arr_mensajes;
     }
 
 }
