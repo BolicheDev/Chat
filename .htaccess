@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^([a-z_]*)$ web/index.php?comando=$1 [L,NC]

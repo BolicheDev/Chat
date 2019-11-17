@@ -1,6 +1,8 @@
 * {
     box-sizing: border-box;
     line-height: 1;
+    margin: 0;
+    padding: 0;
 }
 
 html,
@@ -22,8 +24,6 @@ body {
     height: 100%;
     /* ---- */
     background-color: rgba(141, 160, 94, 0.75);
-    /* ---- */
-    /*padding: 5%;*/
 }
 
 .chat-cuerpo {
@@ -32,14 +32,18 @@ body {
     flex-direction: column;
     /* ---- */
     width: 80%;
-    height: 85%;
+    height: 90%;
     /* ---- */
     top: 5%;
     left: 7.5%;
     /* ---- */
+    border-radius: 5px;
+    /* ---- */
     padding-top: 5px;
+    padding-bottom: 5%;
     /* ---- */
     overflow-y: scroll;
+    overflow-x: hidden;
     background-color: rgba(233, 237, 224, 0.438);
 }
 
@@ -47,7 +51,6 @@ body {
     position: relative;
     display: flex;
     min-width: 50px;
-    min-height: 30px;
     /* ---- */
     border-radius: 5px;
     /* ---- */
@@ -65,6 +68,11 @@ body {
     justify-content: flex-start;
 }
 
+.cuerpo-mensaje {
+    display: block;
+    position: relative;
+}
+
 .texto-mensaje {
     padding: 15px;
     padding-top: 5px;
@@ -72,7 +80,28 @@ body {
     /* ---- */
     border-radius: 5px;
     /* ---- */
-    background-color: rgba(45, 144, 236, 0.671);
+    background-color: #e9ede0;
+    max-width: 600px;
+    /* ---- */
+    color: #2A2C41;
+    /* ---- */
+    word-wrap: break-word;
+}
+
+.usuario {
+    text-decoration: underline;
+    /* ---- */
+    color: #2A2C41;
+    /* ---- */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    /* ---- */
+    padding-bottom: 0;
+}
+
+.mensaje-otro {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .chat-input {
@@ -86,9 +115,10 @@ body {
     left: 7.5%;
     padding: 5px;
     /* ---- */
-    background-color: rgb(228, 205, 175);
+    background-color: #2A2C41;
     /* ---- */
-    border-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .div-escribir {
@@ -103,6 +133,8 @@ body {
     align-items: center;
     padding-left: 15px;
     margin-right: 5px;
+    /* ---- */
+    color: antiquewhite;
 }
 
 .div-enviar {
@@ -116,6 +148,11 @@ body {
     /* ---- */
     justify-content: center;
     align-items: center;
+}
+
+.div-enviar:hover {
+    color: antiquewhite;
+    background-color: rgb(192, 133, 31);
 }
 
 ::-webkit-scrollbar {
